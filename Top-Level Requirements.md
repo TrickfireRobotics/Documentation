@@ -18,21 +18,21 @@ Top-Level System Requirements
 ==========================
 * The Robot shall operate in one of two modes: Autonomous Mode and Manual Mode
 * While in Autonomous Mode, the Robot **shall**:
- * Maintain top-level state information
- * At all times, keep track of its position
- * Monitor network traffic for a “Mode-Switch” command
- * Complete its task in under ten minutes
- * Upon receiving a “Mode-Switch” command, switch to Manual Mode
+  * Maintain top-level state information
+  * At all times, keep track of its position
+  * Monitor network traffic for a “Mode-Switch” command
+  * Complete its task in under ten minutes
+  * Upon receiving a “Mode-Switch” command, switch to Manual Mode
 * While in Manual Mode, the Robot **shall**:
- * Monitor network traffic for controller information
- * Perform navigation tasks based on controller information
- * Transmit additional sensor information
- * Upon receiving a “Mode-Switch” command, switch to Autonomous Mode
+  * Monitor network traffic for controller information
+  * Perform navigation tasks based on controller information
+  * Transmit additional sensor information
+  * Upon receiving a “Mode-Switch” command, switch to Autonomous Mode
 * While in either mode, the Robot **shall**:
- * Perform self-diagnosis on all subsystems
- * Transmit all diagnostic information to the external controller
- * Transmit state information to the external controller
- * Maintain timing information 
+  * Perform self-diagnosis on all subsystems
+  * Transmit all diagnostic information to the external controller
+  * Transmit state information to the external controller
+  * Maintain timing information 
 
 Mining Requirements
 ==========================
@@ -47,18 +47,18 @@ Mining Requirements
 Navigation Requirements
 ==========================
 * While in Autonomous Mode, the Robot **shall**:
- * Establish and maintain a localization with which to orient itself
- * Drive to and from the mining zone
- * Avoid all obstacles while performing navigation procedures
- * Maintain navigation history data
- * Position itself in front of the dumping bin prior to the dumping procedure
+  * Establish and maintain a localization with which to orient itself
+  * Drive to and from the mining zone
+  * Avoid all obstacles while performing navigation procedures
+  * Maintain navigation history data
+  * Position itself in front of the dumping bin prior to the dumping procedure
 
 
 Dumping Requirements
 ==========================
 * While in Autonomous Mode, the Robot **shall**:
- * Only begin dumping procedure while in the dumping zone
- * Avoid interfering with the bin
- * Upon finishing the dumping procedure, shut itself off
+  * Only begin dumping procedure while in the dumping zone
+  * Avoid interfering with the bin
+  * Upon finishing the dumping procedure, shut itself off
 * While in Manual Mode, the Robot **shall**:
- * Monitor network traffic for dumping commands
+  * Monitor network traffic for dumping commands
