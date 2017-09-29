@@ -1,7 +1,9 @@
-#The Most Important Thing
+The Most Important Thing
+==========================
 * The Robot **shall** be blue
 
-#Primary Use-Case
+Primary Use-Case
+==========================
 1. The Robot **shall** initialize itself upon boot
 2. After initialization is complete, the Robot **shall** monitor network traffic for the “Go” command
 3. Upon receiving a “Go” command, the Robot **shall** establish localization and orient itself
@@ -12,7 +14,8 @@
 8. Upon arriving at the starting area, the Robot **shall** dump its payload
 9. After dumping the payload, the Robot **shall** shut itself off
 
-#Top-Level System Requirements
+Top-Level System Requirements
+==========================
 * The Robot shall operate in one of two modes: Autonomous Mode and Manual Mode
 * While in Autonomous Mode, the Robot **shall**:
  * Maintain top-level state information
@@ -31,7 +34,8 @@
  * Transmit state information to the external controller
  * Maintain timing information 
 
-#Mining Requirements
+Mining Requirements
+==========================
 * The Robot **shall** not keep track of the weight of the bin
 * The Robot **shall** keep track of arm posing information
 * The Robot **shall** keep track of where it has been digging
@@ -40,7 +44,8 @@
 * The Robot **shall** make estimations of where the actual gravel is
 * The Robot **shall** follow a predefined series of mining movements during the mining procedure
 
-#Navigation Requirements
+Navigation Requirements
+==========================
 * While in Autonomous Mode, the Robot **shall**:
  * Establish and maintain a localization with which to orient itself
  * Drive to and from the mining zone
@@ -49,7 +54,8 @@
  * Position itself in front of the dumping bin prior to the dumping procedure
 
 
-#Dumping Requirements
+Dumping Requirements
+==========================
 * While in Autonomous Mode, the Robot **shall**:
  * Only begin dumping procedure while in the dumping zone
  * Avoid interfering with the bin
