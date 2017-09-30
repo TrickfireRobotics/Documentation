@@ -25,6 +25,8 @@ Top-Level System Requirements
   * Upon receiving a “Mode-Switch” command, switch to Manual Mode
 * While in Manual Mode, the Robot **shall**:
   * Monitor network traffic for controller information
+  * At all times, keep track of its position
+  * Monitor network traffic for a “Mode-Switch” command
   * Perform navigation tasks based on controller information
   * Transmit additional sensor information
   * Upon receiving a “Mode-Switch” command, switch to Autonomous Mode
@@ -32,7 +34,7 @@ Top-Level System Requirements
   * Perform self-diagnosis on all subsystems
   * Transmit all diagnostic information to the external controller
   * Transmit state information to the external controller
-  * Maintain timing information 
+  * Maintain timing information
 
 Mining Requirements
 ==========================
