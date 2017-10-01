@@ -279,7 +279,6 @@ Do not use `long double`.
 
 **Mutable**
 
-Use of the `mutable` keyword is forbidden.
 
 **dynamic_cast**
 
@@ -315,7 +314,8 @@ Software Design Standards
 - Global data must be documented in the design.
 - Global data must be minimized.
 - Bi-directional dependencies between software elements must be justified.
-- Exceptions and assertions used for control flow are forbidden.
+- Exceptions and assertions used for control flow must be justified. Exception:
+  a timer exception used for task scheduling.
 - The use of self-modifying software is prohibited.
 
 **Software Design Guidelines**
@@ -934,7 +934,6 @@ Implementation inheritance relationships should be explained in the in the
 - All publicly derived classes must meet the requirements of the base class
 - Interface inheritance must satisfy the Liskov Substitution Principle
 - Avoid mixing interface inheritance and implementation inheritance if possible
-- Consider using abstract base classes
 - Do not redefine non-virtual member functions
 - Mark function overrides with `override` or `final`, leaf classes `final`
 - Do not call virtual functions in constructors or destructors
