@@ -19,20 +19,19 @@ Top-Level System Requirements
 * The Robot shall operate in one of two modes: Autonomous Mode and Manual Mode
 * While in Autonomous Mode, the Robot **shall**:
   * Maintain top-level state information
-  * At all times, keep track of its position
-  * Monitor network traffic for a “Mode-Switch” command
   * Complete its task in under ten minutes
   * Upon receiving a “Mode-Switch” command, switch to Manual Mode
 * While in Manual Mode, the Robot **shall**:
-  * Monitor network traffic for controller information
   * Perform navigation tasks based on controller information
   * Transmit additional sensor information
   * Upon receiving a “Mode-Switch” command, switch to Autonomous Mode
 * While in either mode, the Robot **shall**:
   * Perform self-diagnosis on all subsystems
+  * Monitor network traffic for controller information
+  * Maintain localization
   * Transmit all diagnostic information to the external controller
   * Transmit state information to the external controller
-  * Maintain timing information 
+  * Maintain timing information
 
 Mining Requirements
 ==========================
