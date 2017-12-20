@@ -92,7 +92,7 @@ within that function with temporary or automatic storage duration.
 
 Classes that allocate memory with dynamic storage duration, including
 any memory allocated with the new operator, or allocate other shared resources
-must explicitly define copy constructors and copy assignment operators.
+must wrap those members with smart pointers.  `std::shared_ptr` is preferred.
 
 
 **Internal/External Linkage**
@@ -174,7 +174,10 @@ parent classes be virtual base classes) requires justification.
 
 **Complexity**
 
-Code functions must not be overly complex.
+Code functions must not be overly complex. Readability is generally preferred 
+when performance considerations are minor. If performance considerations are 
+not minor, optimized code should still be written to be as readable as possible
+and explained thorougly in code comments.
 
 **Dead Code**
 
@@ -199,7 +202,8 @@ production executable object code (or data).*
 
 **Goto**
 
-The `goto` keyword should not be used.
+The `goto` keyword should not be used, except when absolutely required. Justification
+must be provided when using the `goto` keyword.
 
 **Variable Initialization**
 
@@ -219,10 +223,6 @@ compatible with the target hardware and software architecture.
 
 The return value of a non-void function must be explicitly cast to (void)
 using a C-style cast if the value is not used by the calling function.
-
-[I believe the purpose here is to show that anyone ignoring the return value 
-of a function is doing so intentionally, but I'm considering pulling it anyway
-because it's a little weird.  Thoughts?]
 
 **Order of Operations**
 
@@ -279,18 +279,7 @@ Do not use `long double`.
 
 **Mutable**
 
-Using the mutable keyword requires justification.
-
-**Exceptions**
-
-*C++ exceptions must not be used.*
-
-[This was more of a hardware limitation for UASC, but it may make sense for us as 
-
-well. 
-Read up on the
-<a href="https://en.wikipedia.org/wiki/Design_by_contract">Design By Contract</a>
-programming style (possibly to be included as a separate document).]
+Use of the `mutable` keyword is forbidden.
 
 **dynamic_cast**
 
@@ -300,10 +289,6 @@ the typeid operator requires justification.
 **Friend**
 
 Using the friend keyword requires justification.
-
-**Protected**
-
-Using the protected keyword requires justification.
 
 **Initialization Lists**
 
@@ -330,8 +315,7 @@ Software Design Standards
 - Global data must be documented in the design.
 - Global data must be minimized.
 - Bi-directional dependencies between software elements must be justified.
-- Exceptions and assertions used for control flow must be justified. Exception:
-  a timer exception used for task scheduling.
+- Exceptions and assertions used for control flow are forbidden.
 - The use of self-modifying software is prohibited.
 
 **Software Design Guidelines**
@@ -390,13 +374,6 @@ C++ code should adhere to these naming conventions:
   - Header files that are #included in the body of another file (e.g. to define
     a reusable lookup table) should use the -inline.h suffix.
 
-  - All C++ files associated with a design package should be prefixed with the
-    package namespace name followed by an underscore. For example if `nav` is a
-    namespace representing the Navigation package, then
-    `nav_localize.h` and `nav_localize.cpp` are files belonging to the Navigation 
-
-package.
-
   - Files should be named with the primary entity they contain. Example:
     `nav_localize.h` contains declaration of class `nav::Localize`.
     Exceptions are allowed when a file contains an assortment of different
@@ -418,11 +395,11 @@ throughout the project.
   - Variables and Function Parameters: `lower_case`
   - constexpr Methods and Functions: `lower_case`
   - Non-const struct member variables: `lower_case`
-  - Non-const class member variables: `lower_case_` (incl. trailing undercore)
+  - Non-const class member variables: `m_lower_case`
   - Const member variables: `kCamelCase`
   - Template type parameters: `CamelCase`
   - Template value parameters: `kCamelCase`
-  - Namespaces (4 characters max) : `lower_case`
+  - Namespaces: `lower_case`
 
 
 - Get methods should be named for the variable they return, and set methods
@@ -607,7 +584,7 @@ should be ordered logically to help the reader.
 The #include for the class header should be the first substantive line in the
 source file, following the file header and the copyright block.
 
-Source code should be wrapped at 90 characters.
+Source code should be wrapped at 80 characters.
 
 
 **Inlining**
@@ -957,8 +934,7 @@ Implementation inheritance relationships should be explained in the in the
 - All publicly derived classes must meet the requirements of the base class
 - Interface inheritance must satisfy the Liskov Substitution Principle
 - Avoid mixing interface inheritance and implementation inheritance if possible
-- Consider using abstract base classes, the non-virtual interface idiom, or the
-  curiously recurring template parameter idiom
+- Consider using abstract base classes
 - Do not redefine non-virtual member functions
 - Mark function overrides with `override` or `final`, leaf classes `final`
 - Do not call virtual functions in constructors or destructors
