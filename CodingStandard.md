@@ -276,10 +276,6 @@ referring to a character in a plain C-style string.
 
 Do not use `long double`.
 
-
-**Mutable**
-
-
 **dynamic_cast**
 
 Except for dynamic_cast, use of Run-Time Type Identification (RTTI) such as
@@ -314,8 +310,7 @@ Software Design Standards
 - Global data must be documented in the design.
 - Global data must be minimized.
 - Bi-directional dependencies between software elements must be justified.
-- Exceptions and assertions used for control flow must be justified. Exception:
-  a timer exception used for task scheduling.
+- Exceptions and assertions used for control flow are forbidden.
 - The use of self-modifying software is prohibited.
 
 **Software Design Guidelines**
@@ -934,10 +929,6 @@ Implementation inheritance relationships should be explained in the in the
 - All publicly derived classes must meet the requirements of the base class
 - Interface inheritance must satisfy the Liskov Substitution Principle
 - Avoid mixing interface inheritance and implementation inheritance if possible
-- Do not redefine non-virtual member functions
-- Mark function overrides with `override` or `final`, leaf classes `final`
-- Do not call virtual functions in constructors or destructors
-- Document inheritance rationale in the `@inherits` field of the class header
 
 <u>Discussion</u>
 
