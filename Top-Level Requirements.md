@@ -1,63 +1,86 @@
-The Most Important Thing
-==========================
-* The Robot **shall** be blue
-
-Primary Use-Case
-==========================
-1. The Robot **shall** initialize itself upon boot
-2. After initialization is complete, the Robot **shall** monitor network traffic for the “Go” command
-3. Upon receiving a “Go” command, the Robot **shall** establish localization and orient itself
-4. After orientation is complete, the Robot **shall** select an appropriate direction
-5. After selecting a movement direction, the Robot **shall** drive to the mining area
-6. After arriving to the mining area, the Robot **shall** commence with the mining procedure
-7. After mining is complete, the Robot **shall** return to the starting area
-8. Upon arriving at the starting area, the Robot **shall** dump its payload
-9. After dumping the payload, the Robot **shall** shut itself off
-
-Top-Level System Requirements
-==========================
-* The Robot shall operate in one of two modes: Autonomous Mode and Manual Mode
-* While in Autonomous Mode, the Robot **shall**:
-  * Maintain top-level state information
-  * Complete its task in under ten minutes
-  * Upon receiving a “Mode-Switch” command, switch to Manual Mode
-* While in Manual Mode, the Robot **shall**:
-  * Perform navigation tasks based on controller information
-  * Transmit additional sensor information
-  * Upon receiving a “Mode-Switch” command, switch to Autonomous Mode
-* While in either mode, the Robot **shall**:
-  * Perform self-diagnosis on all subsystems
-  * Monitor network traffic for controller information
-  * Maintain localization
-  * Transmit all diagnostic information to the external controller
-  * Transmit state information to the external controller
-  * Maintain timing information
-
-Mining Requirements
-==========================
-* The Robot **shall** not keep track of the weight of the bin
-* The Robot **shall** keep track of arm posing information
-* The Robot **shall** keep track of where it has been digging
-* The Robot **shall** dig only one hole
-* The Robot **shall** not store the first scoop
-* The Robot **shall** make estimations of where the actual gravel is
-* The Robot **shall** follow a predefined series of mining movements during the mining procedure
-
-Navigation Requirements
-==========================
-* While in Autonomous Mode, the Robot **shall**:
-  * Establish and maintain a localization with which to orient itself
-  * Drive to and from the mining zone
-  * Avoid all obstacles while performing navigation procedures
-  * Maintain navigation history data
-  * Position itself in front of the dumping bin prior to the dumping procedure
-
-
-Dumping Requirements
-==========================
-* While in Autonomous Mode, the Robot **shall**:
-  * Only begin dumping procedure while in the dumping zone
-  * Avoid interfering with the bin
-  * Upon finishing the dumping procedure, shut itself off
-* While in Manual Mode, the Robot **shall**:
-  * Monitor network traffic for dumping commands
+# Software Requirements
+## List of Terms
+* East **shall** be defined as the direction perpendicular and away to the face of the designated mining receptacle.
+## Requirements
+### 1.	Executive System
+* 1.1 The executive system **shall** process mission control commands.  
+* 1.2 The executive system **shall** start and manage autonomous operation.  
+* 1.3 The executive system **shall** monitor and delegate system responsibilities and state in between mission subsystems.  
+* 1.4 The executive system **shall** support two classes of commands:  
+    * 1.4.1 The Autonomous Command: Commences the main mission phases and tracks autonomous mission state.  
+    * 1.4.2 Teleop Commands: A lightweight command processing mode which contains user commands to be fed to control systems.  
+* 1.5 The executive system **shall** track mission progress and mission time elapsed.  
+* 1.6 The executive system **shall** be able to preempt all subsystem.  
+* 1.7 The executive system **shall** return the system to a safe state upon failure.  
+### 2.  Mission Control Interface
+* 2.1 The control interface **shall** have commands to:
+    * 2.1.1 Start autonomous operation.
+    * 2.1.2 Halt autonomous operation.  
+    * 2.1.3 Manually input directional instructions for driving
+    * 2.1.4 Execute a digging procedure
+### 3.  Communication Subsystem
+* 3.1 The communication subsystem **shall** monitor all top level diagnostic communication, and display them in the command center.
+* 3.2 The communication subsystem **shall** render necessary and sufficient data to the command center to control the mission.
+* 3.3 The communication subsystem could monitor compressed forward and rear video feeds when requested.
+* 3.4 The communication subsystem should monitor bandwidth of communications.
+* 3.5 The communication subsystem **shall** adhere to NASA rules and regulations:
+    <https://www.nasa.gov/sites/default/files/atoms/files/2018_rulesrubrics_partii.pdf>
+* 3.6 The subsystem could encrypt all incoming and outgoing transmissions
+* 3.7 The communication subsystem **shall** be able to receive incoming transmissions at all times.
+### 4.  Sensor Subsystem
+* 4.1 Individual sensor subsystems **shall**:
+    * 4.1.1 Collect raw sensor data.
+    * 4.1.2 Process it as needed.
+    * 4.1.3 Publish the processed data at a set interval.
+* 4.2 The subsystem **shall** have a sensor fusion subsystem.
+* 4.3 Any or all sensor data from subsystems **shall** be fused and published by the sensor fusion subsystem.
+### 5.  Control Subsystem
+* 5.1 A control subsystem **shall**:
+    * 5.1.1 Maintain a group of mechanical components to control.
+    * 5.1.2 Maintain state information about current pose of tracked components.
+    * 5.1.3 Send controlling signals to those components and respond to tracked states in real time.
+* 5.2 The subsystem **shall** have a control subsystem for base movement.
+* 5.3 The subsystem **shall** have a control subsystem for arm movement.
+* 5.4 The subsystem **shall** have a control subsystem for dumping bin movement.
+### 6.  Localization Subsystem
+* 6.1 Localization **shall** be defined as: detecting a fiducial marker and determining the robot’s current position based on that detection.
+* 6.2 Until the subsystem has localized the robot, the localization subsystem **shall**:
+    * 6.2.1 Rotate the robot a set angle.
+    * 6.2.2 Scan for fiducial markers in order to localize the robot.
+* 6.3 Once the subsystem is localized the localization subsystem **shall** signal the executive system.
+### 7.  Navigation Subsystem
+#### 7.1  Fundamental
+* 7.1.1 The navigation subsystem **shall** define a goal as a position and quaternion orientation.
+* 7.1.2 The navigation subsystem **shall** provide and read necessary and sufficient data to calculate path information.
+* 7.1.3 The navigation subsystem **shall** move the rover towards the goal, based on path information.
+* 7.1.4 The navigation subsystem **shall** cease operation upon arriving at a goal within a set tolerance.
+* 7.1.5 The navigation subsystem **shall**  provide appropriate error handling procedures.
+#### 7.2  Pre-Mining
+* 7.2.1 The software **shall** define a point at a configurable distance directly East of the bin , and within the mining zone as the initial goal.
+* 7.2.2 On navigating to the bin the subsystem **shall** optimize the current goal to minimize driving time for the rover.
+* 7.2.3 The algorithm **shall** define a line segment that represents the set of “minable” locations using the points L0, L1, and L2, where:
+    * 7.2.3.1 The point L1 is defined as a point directly East of the bin X meters, where X is the contest requirement for mining distance plus some configurable safety threshold.
+    * 7.2.3.2 The point L0 is defined as a point directly East of the robot and directly North or South of L1.
+    * 7.2.3.3 The point L2 is defined as a point flipped from L0 over L1.
+* 7.2.3 The software **shall** have a configurable time value GOAL_RECALC_DELTA that represents the time between recalculations
+* 7.2.4 The software **shall** calculate the nearest point on the the Mining Line every GOAL_RECALC_DELTA time units and use that nearest point as the navigation goal
+#### 7.3  Post-Mining
+* 7.3.1 The software **shall** define a static point at a configurable distance directly East of the bin as the goal and navigate there.
+### 8.  Mining Subsystem
+* 8.1 The mining subsystem **shall** be provided a time limit and not operate longer than that time limit.
+* 8.2 The mining subsystem **shall** hold a predefined mining procedure.
+* 8.3 The mining subsystem **shall** follow a predefined series of mining movements during the mining procedure.
+* 8.4 The mining procedure **shall** define an ordered set of mining locations (and dumping locations) relative to the robot position
+* 8.5 The mining procedure **shall** further be divided into atomically-operating subprocedures (scoops)
+* 8.6 The mining procedure **shall** always check timing flags before beginning scoops
+* 8.7 The mining procedure **shall** be terminated upon detecting timing flags
+* 8.8 Upon completing the mining procedure, the mining subsystem **shall**:
+    * 8.8.1 Define an “obstacle” representing the digging hole and send it to the navigation subsystem.
+    * 8.8.2 Return the mining arm to the starting position.
+### 9.  Dumping Subsystem
+* 9.1 As a precondition the rover should be facing east, relatively close to the dumping receptacle.
+* 9.2 The dumping subsystem **shall** perform the localization procedure prior to the start of the  dumping procedure.
+* 9.3 The dumping procedure **shall**:
+    * 9.3.1 Orient itself and turn to face east.
+    * 9.3.2 Back up to within a set tolerance of the wall, maintaining eastern orientation.
+    * 9.4.3 Raise the mining bin and dump the regolith at a set speed.
