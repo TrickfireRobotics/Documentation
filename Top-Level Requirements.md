@@ -19,13 +19,13 @@
     * 2.1.3 Manually input directional instructions for driving
     * 2.1.4 Execute a digging procedure
 ### 3.  Communication Subsystem
-* 3.1 The communication subsystem **shall** monitor all top level diagnostic communication, and display them in the command center.
+* 3.1 The communication subsystem **shall** monitor all top level diagnostic communications, and display them in the command center.
 * 3.2 The communication subsystem **shall** render necessary and sufficient data to the command center to control the mission.
-* 3.3 The communication subsystem could monitor compressed forward and rear video feeds when requested.
-* 3.4 The communication subsystem should monitor bandwidth of communications.
+* 3.3 The communication subsystem **could** monitor compressed forward and rear video feeds when requested.
+* 3.4 The communication subsystem **shall** monitor bandwidth of communications.
 * 3.5 The communication subsystem **shall** adhere to NASA rules and regulations:
     <https://www.nasa.gov/sites/default/files/atoms/files/2018_rulesrubrics_partii.pdf>
-* 3.6 The subsystem could encrypt all incoming and outgoing transmissions
+* 3.6 The subsystem **could** encrypt all incoming and outgoing transmissions
 * 3.7 The communication subsystem **shall** be able to receive incoming transmissions at all times.
 ### 4.  Sensor Subsystem
 * 4.1 Individual sensor subsystems **shall**:
@@ -78,9 +78,9 @@
     * 8.8.1 Define an “obstacle” representing the digging hole and send it to the navigation subsystem.
     * 8.8.2 Return the mining arm to the starting position.
 ### 9.  Dumping Subsystem
-* 9.1 As a precondition the rover should be facing east, relatively close to the dumping receptacle.
+* 9.1 As a precondition the rover **shall** be facing east, relatively close to the dumping receptacle.
 * 9.2 The dumping subsystem **shall** perform the localization procedure prior to the start of the  dumping procedure.
 * 9.3 The dumping procedure **shall**:
     * 9.3.1 Orient itself and turn to face east.
     * 9.3.2 Back up to within a set tolerance of the wall, maintaining eastern orientation.
-    * 9.4.3 Raise the mining bin and dump the regolith at a set speed.
+    * 9.3.3 Raise the mining bin and dump the regolith at a set speed.
