@@ -77,10 +77,12 @@
 * 8.8 Upon completing the mining procedure, the mining subsystem **shall**:
     * 8.8.1 Define an “obstacle” representing the digging hole and send it to the navigation subsystem.
     * 8.8.2 Return the mining arm to the starting position.
+* 8.9 The mining subsystem **shall** provide an ability to move the digging arm to a predefined dumping position to enable bin movement without interference
 ### 9.  Dumping Subsystem
 * 9.1 As a precondition the rover **shall** be facing east, relatively close to the dumping receptacle.
 * 9.2 The dumping subsystem **shall** perform the localization procedure prior to the start of the  dumping procedure.
 * 9.3 The dumping procedure **shall**:
     * 9.3.1 Orient itself and turn to face east.
     * 9.3.2 Back up to within a set tolerance of the wall, maintaining eastern orientation.
-    * 9.3.3 Raise the mining bin and dump the regolith at a set speed.
+    * 9.3.3 Move the digging arm out of the bin to the predefined dumping position.
+    * 9.3.4 Raise the mining bin and dump the regolith at a set speed.
