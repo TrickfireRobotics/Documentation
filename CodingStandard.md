@@ -1,34 +1,120 @@
 **TrickFire Robotics Design and Coding Standard**
 
 Purpose
-===========================================================
+=======================================================================================================================
 
-This document is intended to create a standard guideline for promoting code 
+This document is intended to create a standard guideline for promoting code consistency and quality.
+Developed for use with the **University of Washington Bothell Trickfire Robotics Team**
 
-consistency and quality.
+NASA Robotic Mining Competition, 2018
 
 
 Using This Document
-================================================================================
+=======================================================================================================================
 
-During a code review, reviewers may wish to consult this page to help determine
-if the source code aligns with the project coding standards, guidelines, and
-conventions.
+During a code review, reviewers may wish to consult this page to help determine if the source code aligns with the
+project coding standards, guidelines, and conventions.
 
-If a scenario is not covered on this page, use good judgment and remember
-*consistency is king*.  If there is an established way of doing something in
-other parts of the code base, that's probably the way it should be done.
+If a scenario is not covered on this page, use good judgment and remember *consistency is king*.  If there is an
+established way of doing something in other parts of the code base, that's probably the way it should be done.
 
-If the same question is likely to arise again later in the project, notify
-the Lead Software Engineer, so he or she can update this page for everyone's
-benefit.
+If the same question is likely to arise again later in the project, notify the Lead Software Engineer, so he or she can
+update this page for everyone's benefit.
 
-Note that the use of constructs or mechanisms for which justification is
-required is not discouraged. Requiring justification in these cases is simply
-intended to prevent misuse and to capture rationale for future reference.
+Note that the use of constructs or mechanisms for which justification is required is not discouraged. Requiring 
+justification in these cases is simply intended to prevent misuse and to capture rationale for future reference.
 
+Because the Trickfire Robotics NASA RMC 2018 codebase is built on top of the Robot Operating System framework, any
+topic not covered in this document is deferred to the official ROS C++ style guide, found here:
+<http://wiki.ros.org/CppStyleGuide>
 
-## General Standards
+Any topic not covered in either this document or the official ROS style guide is deferred to the official Google C++
+Style Guide, found here: <https://google.github.io/styleguide/cppguide.html>
+
+If a topic is not covered in any of these documents, but it seems that it needs to be addressed, this document may (and
+should) be modified to reflect the most up-to-date standard employed by the Trickfire Robotics Software Team.
+
+General Standards
+=======================================================================================================================
+
+##Naming
+All names should be descriptive of their purpose. Prefer long, descriptive names to short, confusing names.
+
+**Files**
+
+- Source files should be `lower_case`. C++ files should use either the `.h` or `.cpp` file extensions.
+
+- In general, the use of extra prefixes for file names is discouraged:
+  - Source files representing ROS Nodes should not contain a `node_` prefix or `node_` suffix.
+  - Message (`.msg`), Service (`.srv`), and Action (`.action`) files should be `CamelCase`, not contain the respective
+  "Message", "Service", or "Action" identifiers in the name.
+  - Configuration (`.yaml`) files should not contain `_config` or `_param` suffixes.
+  - Launch files (`.launch`) should not contain the `_launch` suffix.
+- Exeptions:
+  - Packages should be `lower_case` and be contain the `tfr_` prefix (as package names are global to the entire ROS
+    ecosystem).
+  - Files defining an abstract base class should contain a `_interface` suffix.
+
+**Identifiers**
+
+C++ code should adhere to the naming conventions below to promote consistency
+throughout the project.
+```
+  - Pre-Processor Macros: `UPPER_CASE`
+  - Class, Struct, Union, and Enum Types: `CamelCase`
+  - Functions and Class Methods: `lower_case`
+  - Compile-time constants (const, constexpr, enumerators, etc.): `kCamelCase`
+  - Variables and Function Parameters: `lower_case`
+  - constexpr Methods and Functions: `lower_case`
+  - Non-const struct member variables: `lower_case`
+  - Non-const class member variables: `m_lower_case`
+  - Const member variables: `kCamelCase`
+  - Template type parameters: `CamelCase`
+  - Template value parameters: `kCamelCase`
+  - Namespaces: `lower_case`
+
+- Abstract base classes (interfaces) should be prefixed with I, as in
+  `IContainer`.
+
+- Acronyms and abbreviations should be avoided, unless they are well-known and
+  commonly encountered throughout the project.
+```
+##Formatting
+
+- All C++ and Python code should use 4 spaces instead of tabs.
+- C++ braces should always be placed on their own line.
+- Inline C++ functions inside of header definitions is discouraged.
+- Ommitting braces in C++ clauses that include only a single statement is encouraged, unless that statement is 
+  another C++ clause (such as a `for` loop or `if` statement).
+- C++ and Python source code should be wrapped to 80 characters.
+  - EXCEPTION: If this significantly hinders readability, it may be extended to 120 characters infrequently.
+- XML, YAML, and Launch source files should be wrapped to 120 characters.
+- When wrapping variable declarations, align input parameters if possible.
+
+```
+if (true)
+    do_something();
+
+if (true)
+{
+    do_something();
+    do_something_else();
+}
+
+if (false)
+{
+    for (int i = 0; i < 10; i++)
+        do_something();
+    
+    if (true)
+    {
+        ros::SomeLongNamespace::SomeType<AwkwardTemplate> var(param1, param2,
+                                                              param3, param4);
+    }
+}
+```
+
+##Code
 
 **Language Specification**
 
@@ -37,17 +123,6 @@ be compliant with the C++14 (ISO/IEC 14882:2014) language standard, except where
 such standards are not supported by the Robot Operating System (ROS) framework.
 If such instances are found, notify the Software Director so that they may be
 included in this document.
-
-**Coding Standard**
-
-Project standards and guidelines defined in this document should be adhered to
-for all production code. This document shall be maintained and updated as those
-standards are modified or replaced.
-
-**Names**
-
-Names (types, variables, functions, constants, namespaces, enumerators,
-macros, files, etc.) must be descriptive of their purpose and consistent.
 
 **Comments**
 
@@ -357,67 +432,7 @@ This section contains recommendations, not project standards.
 The guidelines should be considered during code review and deviations in the
 code base should be justified or resolved as soon as possible.
 
-**File Naming**
 
-C++ code should adhere to these naming conventions:
-
-  - All source code filenames should be lower case.
-
-  - C++ files should use the .cpp and .h extensions (.hpp extension
-    should not be used).
-
-  - Header files that are #included in the body of another file (e.g. to define
-    a reusable lookup table) should use the -inline.h suffix.
-
-  - Files should be named with the primary entity they contain. Example:
-    `nav_localize.h` contains declaration of class `nav::Localize`.
-    Exceptions are allowed when a file contains an assortment of different
-    types or entities.
-
-  - Files defining an abstract base class should end in `_interface.h`, rather
-    than begin with `i`.
-
-
-**Identifier Naming**
-
-C++ code should adhere to the naming conventions below to promote consistency
-throughout the project.
-```
-  - Pre-Processor Macros: `UPPER_CASE`
-  - Class, Struct, Union, and Enum Types: `CamelCase`
-  - Functions and Class Methods: `lower_case`
-  - Compile-time constants (const, constexpr, enumerators, etc.): `kCamelCase`
-  - Variables and Function Parameters: `lower_case`
-  - constexpr Methods and Functions: `lower_case`
-  - Non-const struct member variables: `lower_case`
-  - Non-const class member variables: `m_lower_case`
-  - Const member variables: `kCamelCase`
-  - Template type parameters: `CamelCase`
-  - Template value parameters: `kCamelCase`
-  - Namespaces: `lower_case`
-
-
-- Get methods should be named for the variable they return, and set methods
-  should be the variable name prefixed with `set_`.
-
-- Abstract base classes (interfaces) should be prefixed with I, as in
-  `IContainer`.
-
-- Acronyms and abbreviations should be avoided, unless they are well-known and
-  commonly encountered throughout the project.
-
-- Acronyms in identifiers should be treated as words, for example,
-  `SidStarApproachRecord` as a class name and `sid_star_approach_record` as a
-  variable name.
-
-- Hungarian naming convention or any encoding of names to imply type information
-  should not be used.  This includes prefixing `p` for pointers, `m` for member
-  variables, `s` for static variables, etc.
-```
-[These are the standards we were using at UASC, and I'm not particularly attached
-to them. Specifically, I wouldn't mind having a convention that differentiates
-between public and private members and methods, and I definitely dislike the 
-trailing `_` they use for class members.  What do you guys like?]
 
 **Header Guards**
 
@@ -929,6 +944,11 @@ Implementation inheritance relationships should be explained in the in the
 - All publicly derived classes must meet the requirements of the base class
 - Interface inheritance must satisfy the Liskov Substitution Principle
 - Avoid mixing interface inheritance and implementation inheritance if possible
+- Consider using abstract base classes
+- Do not redefine non-virtual member functions
+- Mark function overrides with `override` or `final`, leaf classes `final`
+- Do not call virtual functions in constructors or destructors
+- Document inheritance rationale in the `@inherits` field of the class header
 
 <u>Discussion</u>
 
@@ -1335,57 +1355,3 @@ int main()
     Point p4 = Point{x, y};
 }
 ```
-
-**Software Exceptions and Exception Handling**
-
-<u>Summary</u>
-
-- Do not use the C++ exception standard library
-- Do not use exception-related keywords `try`, `catch`, `throw`, `noexcept`
-- Code is compiled using `-fno-exceptions` to disable exceptions
-- Define interfaces with narrow contracts and use assertions to ensure they
-  are fulfilled
-- Check all return values or explicitly discard them with a cast to `void`
-- Use `[[nodiscard]]` to ensure that return values are always checked or
-  explicitly discarded
-
-<u>Discussion</u>
-
-Exceptions can refer to either the C++ language feature, or in the more general
-sense, to unexpected conditions in the software.  C++ exceptions are just one
-possible way of dealing with unexpected (i.e., exceptional) conditions.  This
-project does not use C++ exceptions; of course, unexpected conditions can still
-occur and must be dealt with safely.
-
-Unexpected conditions that represent a violation of the intended use of a
-function or class (its contract) should be exposed during testing and fixed
-during development.  The easiest way to do this is to terminate the software in
-the event that a contract is violated.  This eliminates the need for a lot of
-error handling code, especially for cases where nothing useful can be done once
-the error is detected.  Error handling can be minimized when interfaces are
-designed with a demanding or narrow contract, as described by the Design By
-Contract design philosophy.
-
-When an unexpected condition is possible, but terminating the program is not an
-acceptable outcome, some other corrective action needs to be performed.
-Unfortunately, the code that detects the condition often lacks the context to do
-anything about it and must communicate it back to the caller.  This is why
-exceptions propagate up the call stack until they are caught.  An added benefit
-is that exceptions cannot be ignored as they continue to propagate until they
-are caught, or they terminate the program.
-
-To achieve similar behavior without exceptions, an error code or other output
-value must be returned to the caller.  It is now up to the caller to do the
-same, up the call stack until the error is handled (possibly by terminating the
-program).  The error handling control flow is explicit, so the overhead is both
-fixed and apparent in the application code.  On the other hand, discipline is
-required as a return code can easily be overlooked, allowing the error
-condition to go unhandled.
-
-Return values must always be checked or explicitly
-discarded with an explicit c-style cast to void.  For example:
-`(void)(potentially_failed_function(x));`.
-
-The `[[nodiscard]]` attribute is proposed for the C++17 and should be used to
-where available to issue a compiler warning whenever a return type signaling a
-possible error condition is ignored.
