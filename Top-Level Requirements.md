@@ -62,8 +62,8 @@
     * 7.2.3.1 The point L1 is defined as a point directly East of the bin X meters, where X is the contest requirement for mining distance plus some configurable safety threshold.
     * 7.2.3.2 The point L0 is defined as a point directly East of the robot and directly North or South of L1.
     * 7.2.3.3 The point L2 is defined as a point flipped from L0 over L1.
-* 7.2.3 The software **shall** have a configurable time value GOAL_RECALC_DELTA that represents the time between recalculations
-* 7.2.4 The software **shall** calculate the nearest point on the the Mining Line every GOAL_RECALC_DELTA time units and use that nearest point as the navigation goal
+* 7.2.4 The software **shall** have a configurable time value GOAL_RECALC_DELTA that represents the time between recalculations
+* 7.2.5 The software **shall** calculate the nearest point on the the Mining Line every GOAL_RECALC_DELTA time units and use that nearest point as the navigation goal
 #### 7.3  Post-Mining
 * 7.3.1 The software **shall** define a static point at a configurable distance directly East of the bin as the goal and navigate there.
 ### 8.  Mining Subsystem
@@ -74,9 +74,9 @@
 * 8.5 The mining procedure **shall** further be divided into atomically-operating subprocedures (scoops)
 * 8.6 The mining procedure **shall** always check timing flags before beginning scoops
 * 8.7 The mining procedure **shall** be terminated upon detecting timing flags
-* 8.8 Upon completing the mining procedure, the mining subsystem **shall**:
+* 8.8 Upon completing the mining procedure or user preemption, the mining subsystem **shall**:
     * 8.8.1 Define an “obstacle” representing the digging hole and send it to the navigation subsystem.
-    * 8.8.2 Return the mining arm to the starting position.
+    * 8.8.2 Return the mining arm to an ending position clear of the range of motion of the dumping bin.
 ### 9.  Dumping Subsystem
 * 9.1 As a precondition the rover **shall** be facing east, relatively close to the dumping receptacle.
 * 9.2 The dumping subsystem **shall** perform the localization procedure prior to the start of the  dumping procedure.
