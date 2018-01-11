@@ -62,12 +62,9 @@ throughout the project.
 ```
   - Pre-Processor Macros: `UPPER_CASE`
   - Class, Struct, Union, and Enum Types: `CamelCase`
-  - Functions and Class Methods: `lower_case`
+  - Functions and Class Methods: `lowerCamelCase`
   - Compile-time constants (const, constexpr, enumerators, etc.): `kCamelCase`
   - Variables and Function Parameters: `lower_case`
-  - constexpr Methods and Functions: `lower_case`
-  - Non-const struct member variables: `lower_case`
-  - Non-const class member variables: `m_lower_case`
   - Const member variables: `kCamelCase`
   - Template type parameters: `CamelCase`
   - Template value parameters: `kCamelCase`
@@ -83,6 +80,7 @@ throughout the project.
 
 - All C++ and Python code should use 4 spaces instead of tabs.
 - C++ braces should always be placed on their own line.
+  - EXCEPTION: Braces for braced initialization lists should not be placed on their own line.
 - Inline C++ functions inside of header definitions is discouraged.
 - Ommitting braces in C++ clauses that include only a single statement is encouraged, unless that statement is 
   another C++ clause (such as a `for` loop or `if` statement).
