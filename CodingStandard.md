@@ -37,7 +37,7 @@ should) be modified to reflect the most up-to-date standard employed by the Tric
 General Standards
 =======================================================================================================================
 
-##Naming
+## Naming
 All names should be descriptive of their purpose. Prefer long, descriptive names to short, confusing names.
 
 **Files**
@@ -59,7 +59,7 @@ All names should be descriptive of their purpose. Prefer long, descriptive names
 
 C++ code should adhere to the naming conventions below to promote consistency
 throughout the project.
-```
+
   - Pre-Processor Macros: `UPPER_CASE`
   - Class, Struct, Union, and Enum Types: `CamelCase`
   - Functions and Class Methods: `lowerCamelCase`
@@ -75,8 +75,8 @@ throughout the project.
 
 - Acronyms and abbreviations should be avoided, unless they are well-known and
   commonly encountered throughout the project.
-```
-##Formatting
+
+## Formatting
 
 - All C++ and Python code should use 4 spaces instead of tabs.
 - C++ braces should always be placed on their own line.
@@ -112,7 +112,7 @@ if (false)
 }
 ```
 
-##Code
+## Code
 
 **Language Specification**
 
