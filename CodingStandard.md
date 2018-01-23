@@ -63,11 +63,11 @@ throughout the project.
   - Pre-Processor Macros: `UPPER_CASE`
   - Class, Struct, Union, and Enum Types: `CamelCase`
   - Functions and Class Methods: `lowerCamelCase`
-  - Compile-time constants (const, constexpr, enumerators, etc.): `kCamelCase`
+  - Compile-time constants (const, constexpr, enumerators, etc.): `ALL_CAPS`
   - Variables and Function Parameters: `lower_case`
-  - Const member variables: `kCamelCase`
+  - Const member variables: `ALL_CAPS`
   - Template type parameters: `CamelCase`
-  - Template value parameters: `kCamelCase`
+  - Template value parameters: `lower_case`
   - Namespaces: `lower_case`
 
 - Abstract base classes (interfaces) should be prefixed with I, as in
