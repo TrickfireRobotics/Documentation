@@ -56,14 +56,7 @@
 * 7.1.4 The navigation subsystem **shall** cease operation upon arriving at a goal within a set tolerance.
 * 7.1.5 The navigation subsystem **shall**  provide appropriate error handling procedures.
 #### 7.2  Pre-Mining
-* 7.2.1 The software **shall** define a point at a configurable distance directly East of the bin , and within the mining zone as the initial goal.
-* 7.2.2 On navigating to the bin the subsystem **shall** optimize the current goal to minimize driving time for the rover.
-* 7.2.3 The algorithm **shall** define a line segment that represents the set of “minable” locations using the points L0, L1, and L2, where:
-    * 7.2.3.1 The point L1 is defined as a point directly East of the bin X meters, where X is the contest requirement for mining distance plus some configurable safety threshold.
-    * 7.2.3.2 The point L0 is defined as a point directly East of the robot and directly North or South of L1.
-    * 7.2.3.3 The point L2 is defined as a point flipped from L0 over L1.
-* 7.2.3 The software **shall** have a configurable time value GOAL_RECALC_DELTA that represents the time between recalculations
-* 7.2.4 The software **shall** calculate the nearest point on the the Mining Line every GOAL_RECALC_DELTA time units and use that nearest point as the navigation goal
+* 7.2.1 The software **shall** define static point at a configurable distance directly East of the bin, and within the mining zone as the initial goal.
 #### 7.3  Post-Mining
 * 7.3.1 The software **shall** define a static point at a configurable distance directly East of the bin as the goal and navigate there.
 ### 8.  Mining Subsystem
