@@ -18,7 +18,7 @@
     * 2.1.3 Send directional driving commands.
     * 2.1.4 Execute a digging procedure.
     * 2.1.5 Perform an emergency stop.
-    * 2.1.6 Reset the position of the mining arm.
+    * 2.1.6 Teset the system motors and mining arm after a stop.
 ### 3.  Communication Subsystem
 * 3.1 The communication subsystem **shall** monitor all top level diagnostic communications, and display them in the command center.
 * 3.2 The communication subsystem **shall** render necessary and sufficient data to the command center to control the mission.
@@ -43,7 +43,7 @@
 * 5.2 The subsystem **shall** have a control subsystem for base movement.
 * 5.3 The subsystem **shall** have a control subsystem for arm movement.
 * 5.4 The subsystem **shall** have a control subsystem for dumping bin movement.
-* 5.5 The subsystem **shall** expose an emergency stop mechanism to manually disable motor movement.
+* 5.5 The subsystem **shall** expose a toggle mechanism to stop all motors and manually disable motor movement, and turn them on again.
 ### 6.  Localization Subsystem
 * 6.1 Localization **shall** be defined as: detecting a fiducial marker and determining the robot’s current position based on that detection.
 * 6.2 Until the subsystem has localized the robot, the localization subsystem **shall**:
