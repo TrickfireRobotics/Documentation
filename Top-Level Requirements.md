@@ -74,8 +74,8 @@
     * 8.8.2 Return the mining arm to the starting position.
 * 8.9 The mining subsystem **shall** expose a mechanism to reset arm postition.
 ### 9.  Dumping Subsystem
-* 9.1 As a precondition the rover **shall** be facing west, relatively close to the dumping receptacle.
-* 9.2 The dumping subsystem **shall** define a goal called the dumping position, defined as touching the mining receptable facing west.
+* 9.1 As a precondition the rover **shall** be facing east, relatively close to the dumping receptacle.
+* 9.2 The dumping subsystem **shall** define a goal called the dumping position, defined as touching the mining receptable facing east.
 * 9.3 To reach the dumping postion the dumping subsystem **shall**:
     * 9.3.1 Orient itself towards the center of the bin.
     * 9.3.2 Back up towards the center of the receptacle using sensor data.
