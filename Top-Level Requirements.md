@@ -4,13 +4,13 @@
 ## Requirements
 ### 1.  Executive System
 * 1.1 The executive system **shall** process mission control commands.
-* 1.3 The executive system **shall** monitor and delegate system responsibilities and state in between mission subsystems.
-* 1.4 The executive system **shall** support two modes of operation:
-    * 1.4.1 *Autonomous* Commences the main mission phases and tracks autonomous mission state.
-    * 1.4.2 *Teleop* lightweight user command processing and subsystem control.
-* 1.5 The executive system **shall** track mission progress and mission time elapsed.
-* 1.6 The executive system **shall** be able to preempt all subsystems.
-* 1.7 The executive system **shall** attempt to return the system to a safe state upon failure.
+* 1.2 The executive system **shall** monitor and delegate system responsibilities and state in between mission subsystems.
+* 1.3 The executive system **shall** support two modes of operation:
+    * 1.3.1 *Autonomous* Commences the main mission phases and tracks autonomous mission state.
+    * 1.3.2 *Teleop* lightweight user command processing and subsystem control.
+* 1.4 The executive system **shall** track mission progress and mission time elapsed.
+* 1.5 The executive system **shall** be able to preempt all subsystems.
+* 1.6 The executive system **shall** attempt to return the system to a safe state upon failure.
 ### 2.  Mission Control Interface
 * 2.1 The control interface **shall** have commands to:
     * 2.1.1 Start autonomous operation.
@@ -18,7 +18,7 @@
     * 2.1.3 Send directional driving commands.
     * 2.1.4 Execute a digging procedure.
     * 2.1.5 Perform an emergency stop.
-    * 2.1.6 Teset the system motors and mining arm after a stop.
+    * 2.1.6 Test the system motors and mining arm after a stop.
 ### 3.  Communication Subsystem
 * 3.1 The communication subsystem **shall** monitor all top level diagnostic communications, and display them in the command center.
 * 3.2 The communication subsystem **shall** render necessary and sufficient data to the command center to control the mission.
