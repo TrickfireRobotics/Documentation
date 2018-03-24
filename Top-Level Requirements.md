@@ -18,7 +18,7 @@
     * 2.1.3 Send directional driving commands.
     * 2.1.4 Execute a digging procedure.
     * 2.1.5 Perform an emergency stop.
-    * 2.1.6 Test the system motors and mining arm after a stop.
+    * 2.1.6 Reset the system motors and mining arm after a stop.
 ### 3.  Communication Subsystem
 * 3.1 The communication subsystem **shall** monitor all top level diagnostic communications, and display them in the command center.
 * 3.2 The communication subsystem **shall** render necessary and sufficient data to the command center to control the mission.
