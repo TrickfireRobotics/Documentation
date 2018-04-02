@@ -6,7 +6,7 @@
 * 1.1 The executive system **shall** process mission control commands.
 * 1.2 The executive system **shall** monitor and delegate system responsibilities and state in between mission subsystems.
 * 1.3 The executive system **shall** support two modes of operation:
-    * 1.3.1 *Autonomous* Commences the main mission phases and tracks autonomous mission state.
+    * 1.3.1 *Autonomous* performs autonomous mission and tracks autonomous mission state.
     * 1.3.2 *Teleop* lightweight user command processing and subsystem control.
 * 1.4 The executive system **shall** track mission progress and mission time elapsed.
 * 1.5 The executive system **shall** be able to preempt all subsystems.
@@ -18,7 +18,7 @@
     * 2.1.3 Send directional driving commands.
     * 2.1.4 Execute a digging procedure.
     * 2.1.5 Perform an emergency stop.
-    * 2.1.6 Reset the system motors and mining arm after a stop.
+    * 2.1.6 Make the system operational after an emergency stop.
 ### 3.  Communication Subsystem
 * 3.1 The communication subsystem **shall** monitor all top level diagnostic communications, and display them in the command center.
 * 3.2 The communication subsystem **shall** render necessary and sufficient data to the command center to control the mission.
@@ -72,7 +72,7 @@
 * 8.8 Upon completing the mining procedure, the mining subsystem **shall**:
     * 8.8.1 Define an “obstacle” representing the digging hole and send it to the navigation subsystem.
     * 8.8.2 Return the mining arm to the starting position.
-* 8.9 The mining subsystem **shall** expose a mechanism to reset arm postition.
+* 8.9 The mining subsystem **shall** expose a mechanism to reset mining arm position to place where it does not interfere with system operation.
 ### 9.  Dumping Subsystem
 * 9.1 As a precondition the rover **shall** be facing east, relatively close to the dumping receptacle.
 * 9.2 The dumping subsystem **shall** define a goal called the dumping position, defined as touching the mining receptable facing east.
