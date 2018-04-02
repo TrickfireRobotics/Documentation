@@ -2,22 +2,23 @@
 ## List of Terms
 * East **shall** be defined as the direction perpendicular and away to the face of the designated mining receptacle.
 ## Requirements
-### 1.	Executive System
-* 1.1 The executive system **shall** process mission control commands.  
-* 1.2 The executive system **shall** start and manage autonomous operation.  
-* 1.3 The executive system **shall** monitor and delegate system responsibilities and state in between mission subsystems.  
-* 1.4 The executive system **shall** support two classes of commands:  
-    * 1.4.1 The Autonomous Command: Commences the main mission phases and tracks autonomous mission state.  
-    * 1.4.2 Teleop Commands: A lightweight command processing mode which contains user commands to be fed to control systems.  
-* 1.5 The executive system **shall** track mission progress and mission time elapsed.  
-* 1.6 The executive system **shall** be able to preempt all subsystem.  
-* 1.7 The executive system **shall** return the system to a safe state upon failure.  
+### 1.  Executive System
+* 1.1 The executive system **shall** process mission control commands.
+* 1.2 The executive system **shall** monitor and delegate system responsibilities and state in between mission subsystems.
+* 1.3 The executive system **shall** support two modes of operation:
+    * 1.3.1 *Autonomous* performs autonomous mission and tracks autonomous mission state.
+    * 1.3.2 *Teleop* lightweight user command processing and subsystem control.
+* 1.4 The executive system **shall** track mission progress and mission time elapsed.
+* 1.5 The executive system **shall** be able to preempt all subsystems.
+* 1.6 The executive system **shall** attempt to return the system to a safe state upon failure.
 ### 2.  Mission Control Interface
 * 2.1 The control interface **shall** have commands to:
     * 2.1.1 Start autonomous operation.
-    * 2.1.2 Halt autonomous operation.  
-    * 2.1.3 Manually input directional instructions for driving
-    * 2.1.4 Execute a digging procedure
+    * 2.1.2 Halt autonomous operation.
+    * 2.1.3 Send directional driving commands.
+    * 2.1.4 Execute a digging procedure.
+    * 2.1.5 Perform an emergency stop.
+    * 2.1.6 Make the system operational after an emergency stop.
 ### 3.  Communication Subsystem
 * 3.1 The communication subsystem **shall** monitor all top level diagnostic communications, and display them in the command center.
 * 3.2 The communication subsystem **shall** render necessary and sufficient data to the command center to control the mission.
@@ -42,6 +43,7 @@
 * 5.2 The subsystem **shall** have a control subsystem for base movement.
 * 5.3 The subsystem **shall** have a control subsystem for arm movement.
 * 5.4 The subsystem **shall** have a control subsystem for dumping bin movement.
+* 5.5 The subsystem **shall** expose a toggle mechanism to stop all motors and manually disable motor movement, and turn them on again.
 ### 6.  Localization Subsystem
 * 6.1 Localization **shall** be defined as: detecting a fiducial marker and determining the robot’s current position based on that detection.
 * 6.2 Until the subsystem has localized the robot, the localization subsystem **shall**:
@@ -70,10 +72,12 @@
 * 8.8 Upon completing the mining procedure, the mining subsystem **shall**:
     * 8.8.1 Define an “obstacle” representing the digging hole and send it to the navigation subsystem.
     * 8.8.2 Return the mining arm to the starting position.
+* 8.9 The mining subsystem **shall** expose a mechanism to reset mining arm position to place where it does not interfere with system operation.
 ### 9.  Dumping Subsystem
 * 9.1 As a precondition the rover **shall** be facing east, relatively close to the dumping receptacle.
-* 9.2 The dumping subsystem **shall** perform the localization procedure prior to the start of the  dumping procedure.
-* 9.3 The dumping procedure **shall**:
-    * 9.3.1 Orient itself and turn to face east.
-    * 9.3.2 Back up to within a set tolerance of the wall, maintaining eastern orientation.
-    * 9.3.3 Raise the mining bin and dump the regolith at a set speed.
+* 9.2 The dumping subsystem **shall** define a goal called the dumping position, defined as touching the mining receptable facing east.
+* 9.3 To reach the dumping postion the dumping subsystem **shall**:
+    * 9.3.1 Orient itself towards the center of the bin.
+    * 9.3.2 Back up towards the center of the receptacle using sensor data.
+    * 9.3.3 In the event of data loss back up at it's last know heading.
+* 10.4 Upon reaching the dumping position the dumping subsystem **shall** raise the dumping bin.
